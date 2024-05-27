@@ -9,7 +9,7 @@ void configurare (char *cale, int config[5])
     if (fc == NULL)
     {
         printf ("eroare 1 (nu se deschide calea la c.in)"); //verificare daca se deschide
-        return 1;
+        return;
     }
     for (int i=0; i<5; i++)
     {
@@ -27,7 +27,7 @@ int main(int argc, char* argv[])
         FILE *f= fopen (argv[2], "r"); //citim d.in
         if (f== NULL)
         {
-            printf ("eroare 2 (nu se deschide d.in)\n", argv[2]); //verificam
+            printf ("eroare 2 (nu se deschide d.in)\n"); //verificam
             exit (1);
         }
         int nrechipe;
@@ -41,15 +41,27 @@ int main(int argc, char* argv[])
             fgetc(f);
             fgets(numeechipa, 100,f);
             numeechipa [strcspn(numeechipa, "\n")]=NULL; //eliminam newlineul de la sfarsit
+            int punctetotale=0;
             for(int j=0; j< nrjucatori; j++)
             {
                 char nume[50], prenume [50];
                 int punctejucator;
                 fscanf (f, "%s %s %d", nume, prenume, &punctejucator);
+                punctetotale += punctejucator; //calculam punctajul total al echipei
             }
-            addAtBeginning(&head, numeechipa, nrjucatori); //adaugam echipa la inceputul listei
+            addAtBeginning(&head, numeechipa, nrjucatori, punctetotale); //adaugam echipa la inceputul listei
         }
         fclose(f);
+        int echipetotale = numarechipe(head); //numaram echipele din lista
+        int n=1;
+        while (n*2 <=echipetotale)
+        {
+            n *= 2;
+        } //determinam cea mai mare putere a lui 2 mai mica sau egala cu numarul de echipe
+        while (numarechipe(head)>n) //scoatem echipele cu cele mai putine puncte
+        {
+            scoateechipeslabe (&head);
+        }
         FILE *fr = fopen (argv[3], "w");
         Node *curent = head;
         while (curent != NULL)
@@ -61,5 +73,3 @@ int main(int argc, char* argv[])
     }
     return 0;
 }
-
-
