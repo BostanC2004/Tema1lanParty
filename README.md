@@ -1,4 +1,4 @@
-Acest proect implementeaza primele doua (prima cerinta nu este functionala in versiunea in care am lucrat pentru cerinta a doua) cerinte legate de liste de echipe si jucatori la un lanParty. Proiectul este format din fisierele task1.c (care contine implementarile cerintelor), task1.h (headerul pentru task1.c) si main.c (codul principal).
+Acest proiect implementeaza primele doua cerinte legate de liste de echipe si jucatori la un lanParty. Proiectul este format din fisierele task1.c (care contine implementarile cerintelor), task1.h (headerul pentru task1.c) si main.c (codul principal).
 in task1.c au fost folosite:
 -o structura care contine date despre echipe, cati jucatori sunt in fiecare echipa, punctele acumulate de fiecare membru si punctele totale obtinute de fiecare echipa.
 -functia createNode care creeaza noduri in liste pentru echipe.
