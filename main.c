@@ -52,24 +52,31 @@ int main(int argc, char* argv[])
             addAtBeginning(&head, numeechipa, nrjucatori, punctetotale); //adaugam echipa la inceputul listei
         }
         fclose(f);
-        int echipetotale = numarechipe(head); //numaram echipele din lista
-        int n=1;
-        while (n*2 <=echipetotale)
+        switch (config[0])
         {
-            n *= 2;
-        } //determinam cea mai mare putere a lui 2 mai mica sau egala cu numarul de echipe
-        while (numarechipe(head)>n) //scoatem echipele cu cele mai putine puncte
-        {
-            scoateechipeslabe (&head);
+        case 1:
+            if (config [1]==1)
+            {
+                int echipetotale = numarechipe(head); //numaram echipele din lista
+                int n=1;
+                while (n*2 <=echipetotale)
+                {
+                    n *= 2;
+                } //determinam cea mai mare putere a lui 2 mai mica sau egala cu numarul de echipe
+                while (numarechipe(head)>n) //scoatem echipele cu cele mai putine puncte
+                {
+                    scoateechipeslabe (&head);
+                }
+            }
+            FILE *fr = fopen (argv[3], "w");
+            Node *curent = head;
+            while (curent != NULL)
+            {
+                fprintf (fr, "%s\n", curent->numeechipa);
+                curent =curent->next;
+            }
+            fclose (fr);
         }
-        FILE *fr = fopen (argv[3], "w");
-        Node *curent = head;
-        while (curent != NULL)
-        {
-            fprintf (fr, "%s\n", curent->numeechipa);
-            curent =curent->next;
-        }
-        fclose (fr);
     }
     return 0;
 }
